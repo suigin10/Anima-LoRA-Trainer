@@ -34,7 +34,7 @@ class StateRetentionTests(unittest.TestCase):
             save_and_remove_state_on_epoch_end=lambda args, accelerator, epoch: save('{}-epoch{:06d}-state', args, epoch),
             save_state_on_train_end=lambda args, accelerator: save('{}-state', args))
         self.args = SimpleNamespace(output_dir=str(self.root / 'models'), output_name='lora', save_last_n_steps=123)
-install_state_retention(self.backend)
+        install_state_retention(self.backend)
 
     def step(self, n):
         self.backend.save_and_remove_state_stepwise(self.args, None, n)

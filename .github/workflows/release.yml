@@ -3,7 +3,7 @@ name: Publish release
 on:
   push:
     branches: [main]
-    paths: ['dist/**']
+    paths: ['dist/**', '.github/workflows/release.yml']
   workflow_dispatch:
 
 permissions:

@@ -4,9 +4,10 @@ Windows向けのAnima専用LoRA学習GUI。MOSS-LoRA-Trainerの画面構成・�
 
 ## ダウンロード
 
-- [v0.3.1 通常版ZIP](https://github.com/suigin10/Anima-LoRA-Trainer/raw/refs/heads/main/dist/Anima-LoRA-Trainer-v0.3.1.zip)
-- [v0.3.1 修正パッチZIP](https://github.com/suigin10/Anima-LoRA-Trainer/raw/refs/heads/main/dist/Anima-LoRA-Trainer-v0.3.1-fix.zip)（v0.3.0導入済みの場合）
-- [通常版SHA256](dist/Anima-LoRA-Trainer-v0.3.1.zip.sha256) / [修正パッチSHA256](dist/Anima-LoRA-Trainer-v0.3.1-fix.zip.sha256)
+- [v0.3.1 修正済み通常版ZIP](https://github.com/suigin10/Anima-LoRA-Trainer/releases/download/v0.3.1/Anima-LoRA-Trainer-v0.3.1.zip)
+- [SHA256](https://github.com/suigin10/Anima-LoRA-Trainer/releases/download/v0.3.1/Anima-LoRA-Trainer-v0.3.1.zip.sha256)
+
+通常版ZIPにはv0.3.1の修正を反映済みです。修正パッチの適用は不要です。
 
 ## 起動
 

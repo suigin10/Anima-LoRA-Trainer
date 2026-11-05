@@ -1,0 +1,64 @@
+name: Publish release
+
+on:
+  push:
+    branches: [main]
+    paths: ['dist/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validate release package
+        id: version
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import hashlib, json, os, re
+          version = re.search(r'__version__ = "([0-9]+\.[0-9]+\.[0-9]+)"', Path('anima_trainer/__init__.py').read_text()).group(1)
+          name = f'Anima-LoRA-Trainer-v{version}.zip'
+          archive = Path('dist') / name
+          checksum = archive.with_suffix('.zip.sha256').read_text().split()
+          assert checksum == [hashlib.sha256(archive.read_bytes()).hexdigest(), name]
+          with ZipFile(archive) as z:
+              assert z.testzip() is None
+              prefix = 'Anima-LoRA-Trainer/'
+              manifest = json.loads(z.read(prefix+'MANIFEST.sha256.json'))
+              for path, digest in manifest.items():
+                  data = z.read(prefix+path)
+                  assert hashlib.sha256(data).hexdigest() == digest, path
+                  assert data == Path(path).read_bytes(), path
+              assert z.read(prefix+'anima_trainer/__init__.py') == Path('anima_trainer/__init__.py').read_bytes()
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write(f'tag=v{version}\n')
+          PY
+      - name: Create release and upload corrected full package
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --json isDraft --jq '.isDraft' > /tmp/release-draft; then
+            if [ "$(cat /tmp/release-draft)" != true ]; then
+              echo "Release $TAG is already published."
+              exit 0
+            fi
+          else
+            gh release create "$TAG" --target "$GITHUB_SHA" --title "Anima LoRA Trainer $TAG" --notes-file ".github/release-notes/$TAG.md" --draft
+          fi
+          gh release upload "$TAG" "dist/Anima-LoRA-Trainer-$TAG.zip" "dist/Anima-LoRA-Trainer-$TAG.zip.sha256" --clobber
+          gh release edit "$TAG" --draft=false --latest

@@ -1,0 +1,83 @@
+[
+  {
+    "mode": "base",
+    "rates": [
+      5e-05
+    ],
+    "targets": [
+      "blocks.0.self_attn.proj",
+      "blocks.0.cross_attn.proj",
+      "blocks.0.mlp.proj",
+      "blocks.1.self_attn.proj",
+      "blocks.1.cross_attn.proj",
+      "blocks.1.mlp.proj"
+    ],
+    "gpu_steps": 2,
+    "base_weights_unchanged": true,
+    "adapter_and_te_excluded": true
+  },
+  {
+    "mode": "character",
+    "rates": [
+      2.5e-05,
+      4e-05,
+      6e-05
+    ],
+    "targets": [
+      "blocks.0.self_attn.proj",
+      "blocks.0.cross_attn.proj",
+      "blocks.0.mlp.proj",
+      "blocks.1.self_attn.proj",
+      "blocks.1.cross_attn.proj",
+      "blocks.1.mlp.proj"
+    ],
+    "gpu_steps": 2,
+    "base_weights_unchanged": true,
+    "adapter_and_te_excluded": true
+  },
+  {
+    "mode": "self_attn_lr",
+    "rates": [
+      5e-05
+    ],
+    "targets": [
+      "blocks.0.cross_attn.proj",
+      "blocks.0.mlp.proj",
+      "blocks.1.cross_attn.proj",
+      "blocks.1.mlp.proj"
+    ],
+    "gpu_steps": 2,
+    "base_weights_unchanged": true,
+    "adapter_and_te_excluded": true
+  },
+  {
+    "mode": "cross_attn_lr",
+    "rates": [
+      5e-05
+    ],
+    "targets": [
+      "blocks.0.self_attn.proj",
+      "blocks.0.mlp.proj",
+      "blocks.1.self_attn.proj",
+      "blocks.1.mlp.proj"
+    ],
+    "gpu_steps": 2,
+    "base_weights_unchanged": true,
+    "adapter_and_te_excluded": true
+  },
+  {
+    "mode": "mlp_lr",
+    "rates": [
+      5e-05
+    ],
+    "targets": [
+      "blocks.0.self_attn.proj",
+      "blocks.0.cross_attn.proj",
+      "blocks.1.self_attn.proj",
+      "blocks.1.cross_attn.proj"
+    ],
+    "gpu_steps": 2,
+    "base_weights_unchanged": true,
+    "adapter_and_te_excluded": true
+  }
+]

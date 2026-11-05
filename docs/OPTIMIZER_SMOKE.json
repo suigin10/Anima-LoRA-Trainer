@@ -1,0 +1,152 @@
+[
+  {
+    "optimizer": "AdamW",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "AdamW8bit",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "PagedAdamW8bit",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "PagedAdamW32bit",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "Lion",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "Lion8bit",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "PagedLion8bit",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "SGDNesterov",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "CAME",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "Adafactor",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "Prodigy",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "DAdaptAdam",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "AdamWScheduleFree",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "optimizer": "RAdamScheduleFree",
+    "steps": 2,
+    "ok": true
+  },
+  {
+    "scheduler": "constant",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.0001
+    ]
+  },
+  {
+    "scheduler": "constant_with_warmup",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.0001
+    ]
+  },
+  {
+    "scheduler": "linear",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.0
+    ]
+  },
+  {
+    "scheduler": "cosine",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.0
+    ]
+  },
+  {
+    "scheduler": "cosine_with_restarts",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.0
+    ]
+  },
+  {
+    "scheduler": "cosine_with_min_lr",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      1e-05
+    ]
+  },
+  {
+    "scheduler": "polynomial",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.0
+    ]
+  },
+  {
+    "scheduler": "inverse_sqrt",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      4.662524041201569e-05
+    ]
+  },
+  {
+    "scheduler": "warmup_stable_decay",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      1e-05
+    ]
+  },
+  {
+    "scheduler": "adafactor",
+    "steps": 20,
+    "ok": true,
+    "final_lr": [
+      0.01
+    ]
+  }
+]
